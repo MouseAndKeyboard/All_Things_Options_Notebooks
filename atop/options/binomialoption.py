@@ -36,7 +36,11 @@ class BinomialOption:
         self.up_risk_neutral_prob = ((1+self.risk_free)*(self.stock_price)-self.down_price)/(self.up_price-self.down_price)
         self.down_risk_neutral_prob = 1-self.up_risk_neutral_prob
 
+    def __add__(self, other_option):
+        ...
 
+    def __sub__(self, other_option):
+        ...
 
     # packed into a nice function to quickly display information   
     def print_calc_values(self, 
