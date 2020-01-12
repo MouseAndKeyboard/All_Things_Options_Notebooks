@@ -1,13 +1,16 @@
+import BinomialOption from './options'
+
 class OptionPortfolio(collections.abc.Collection):
     def __init__(self):
         self.assetlist = []
 
     def insert(self, value):
-        assert isinstance(value, asset)
+        assert isinstance(value, BinomialOption)
         self.assetlist.append(value)
 
-    def remove(self, _asset):
-        pass
+    def remove(self, value):
+        assert isinstance(value, BinomialOption)
+        self.assetlist.remove(value)
 
     def calc_graph(self):
         pass
