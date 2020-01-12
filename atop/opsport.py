@@ -1,4 +1,6 @@
-class OptionPortfolio(collections.abc.Collection):
+from collections.abc import Collection
+
+class OptionPortfolio(Collection):
     def __init__(self):
         self.assetlist = []
 
