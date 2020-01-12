@@ -10,13 +10,29 @@ class OptionPortfolio(collections.abc.Collection):
     def remove(self, value):
         self.assetlist.remove(value)
 
-    def total_payoff(self):
-        total_payoff = plt.axhline(y=0)
+    def total_cost(self, underlying):
+        total_cost = 0
         for asset in self.assetlist:
             # the assets in this asset list should implement the Asset abstract class (defined in Asset.py)
-            total_payoff += asset.payoff()
+            total_cost += asset.cost(underlying) # depending on whether you have a long or a short the cost function may be constant or changing
 
-        return total_payoff
+        return total_cost
+
+    def total_revenue(self, underlying):
+        total_revenue = 0
+        for asset in self.assetlist:
+            total_revenue += asset.revenue(underlying)
+        return total_revenue
+
+
+    def total_payoff(self, underlying):
+        # Logically is:
+        # total_payoff(underlying) = total_revenue(underlying) - total_cost(underlying)
+        
+        total_profit = 0
+        for asset in self.assetlist:
+            total_profit += asset.profit(underlying)
+        return total_profit
 
     def __contains__(self, value):
         return value in self.assetlist
