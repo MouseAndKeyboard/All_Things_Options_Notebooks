@@ -5,15 +5,18 @@ class OptionPortfolio(collections.abc.Collection):
         self.assetlist = []
 
     def insert(self, value):
-        assert isinstance(value, BinomialOption)
         self.assetlist.append(value)
 
     def remove(self, value):
-        assert isinstance(value, BinomialOption)
         self.assetlist.remove(value)
 
-    def calc_graph(self):
-        pass
+    def total_payoff(self):
+        total_payoff = plt.axhline(y=0)
+        for asset in self.assetlist:
+            # the assets in this asset list should implement the Asset abstract class (defined in Asset.py)
+            total_payoff += asset.payoff()
+
+        return total_payoff
 
     def __contains__(self, value):
         return value in self.assetlist
