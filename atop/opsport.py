@@ -1,5 +1,3 @@
-import BinomialOption from './options'
-
 class OptionPortfolio(collections.abc.Collection):
     def __init__(self):
         self.assetlist = []
